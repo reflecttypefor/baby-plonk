@@ -34,7 +34,7 @@ You can also play the code with Python notebook [here](https://github.com/Antalp
 
 ### 1. Install poetry
 
-To get started, you'll need to have a Python version >= 3.8 and [`poetry`](https://python-poetry.org) installed:
+To get started, you'll need to have Python >= 3.10 and < 3.12, plus [`poetry`](https://python-poetry.org), installed:
 
 `curl -sSL https://install.python-poetry.org | python3 -`.
 
@@ -42,9 +42,10 @@ To get started, you'll need to have a Python version >= 3.8 and [`poetry`](https
 
 Run command in the root of the repository:
 
-`poetry install`
+`poetry install --no-root`
 
 This will install all the dependencies in a virtualenv.
+The `--no-root` flag installs the dependencies without trying to install this repository as a package module.
 
 ### 3. Run
 
@@ -55,6 +56,12 @@ Then, to see the proof system in action, run command from the root of the reposi
 `poetry run python test.py`
 
 This will take you through the workflow of setup, proof generation, and verification for several example programs.
+
+You can also run the standalone polynomial and Merlin transcript tests:
+
+`poetry run python poly_test.py`
+
+`poetry run pytest merlin/test_merlin.py`
 
 #### 3.2 Run with Jupyter
 
@@ -76,7 +83,7 @@ We've added a graphical interface for easier interaction instead of compiling th
 The UI turns each selector row into a visualized constraint equation and also shows the raw JSON output. The equation rendering uses a bundled local MathJax asset, so it does not depend on an external CDN at runtime.
 
 3.3.1 Start the web server
-   `python3 web_ui.py`
+   `poetry run python web_ui.py`
 
 3.3.2 Open the app
    Visit `http://127.0.0.1:8000` in your browser.
